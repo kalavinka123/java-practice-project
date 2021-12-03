@@ -6,6 +6,6 @@ public class TestLambda {
         List<String> list = Arrays.asList("apple", "banana", "pomegranate");
 
         // The forEach method takes "Consumer" interface.
-        list.forEach(el -> System.out.println(el));
+        list.forEach(System.out::println);
     }
 }
