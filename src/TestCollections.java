@@ -1,11 +1,22 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
+import java.util.Properties;
 
 public class TestCollections {
     public static void main(String[] args) {
 
         // HashMap class - Hash table based implementation of the Map interface.
         testHashMap();
+
+        // Hashtable class - It consists of synchronized methods. 
+        testHashTable();
+
+        // Properties class - A subclass of Hashtable that takes only String type of the key and value.
+        testProperties();
         
     }
 
@@ -51,5 +62,27 @@ public class TestCollections {
         // clear() method
         map.clear();
         System.out.println("map size : " + map.size());
+    }
+
+    private static void testHashTable() {
+        Map<String, Boolean> map = new Hashtable<>();
+        map.put("Cherry tree", false);
+        map.put("Pine tree", false);
+        map.put("Oak tree", true);
+        map.put("Palm tree", true);
+    }
+
+    private static void testProperties() {
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileReader("conf/database.properties"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String username = properties.getProperty("username");
+        System.out.println("username property : " + username);
     }
 }
